@@ -15,11 +15,13 @@
     "test-all": "yarn check-types && yarn check-format && yarn check-lint yarn build"
   },
   "dependencies": {
+    "humps": "^2.0.1",
     "next": "12.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@types/humps": "^2.0.2",
     "@types/node": "^18.11.0",
     "@types/react": "^18.0.21",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
@@ -31,8 +33,8 @@
     "eslint-plugin-n": "^15.0.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.31.10",
+    "husky": "^8.0.0",
     "prettier": "^2.7.1",
-    "typescript": "*",
-    "husky": "^8.0.0"
+    "typescript": "*"
   }
 }
