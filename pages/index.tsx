@@ -4,6 +4,7 @@ import humps from 'humps';
 interface RepositoryInfo {
   svnUrl: string;
   name: string;
+  stargazersCount: number;
 }
 
 export default function Home(): JSX.Element {
@@ -38,6 +39,7 @@ export default function Home(): JSX.Element {
             >
               {rep.name}
             </a>
+            <span> Estrelas {rep.stargazersCount}</span>
           </li>
         ))}
       </ul>
