@@ -1,19 +1,17 @@
-import Head from 'next/head';
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import styles from '../styles/Home.module.css';
+import React, { useEffect, useState } from 'react';
 
-export default function Home() {
+export default function Home(): JSX.Element {
   const [repositories, setRepositories] = useState<string[]>([]);
 
   useEffect(() => {
     fetch('https://api.github.com/users/ericksonsiqueira/repos')
-      .then((res) => res.json())
+      .then(async (res) => await res.json())
       .then((data) => {
         const repNames = data.map((rep) => rep.name);
 
         setRepositories(repNames);
-      });
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   return (
