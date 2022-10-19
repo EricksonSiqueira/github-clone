@@ -1,27 +1,9 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-yarn check-types || 
-(
-  echo "Type checking failed. Please fix the errors and try again."
-  false;
-)
-
-yarn check-format || 
-(
-  echo "Formatting failed. Please fix the errors and try again."
-  false;
-)
-
 yarn lint --fix || 
 (
   echo "Linting failed. Please fix the errors and try again."
-  false;
-)
-
-yarn build || 
-(
-  echo "Build failed. Please fix the errors and try again."
   false;
 )
 
