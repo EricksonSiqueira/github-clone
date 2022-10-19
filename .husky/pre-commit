@@ -1,28 +1,28 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
+# #!/usr/bin/env sh
+# . "$(dirname -- "$0")/_/husky.sh"
 
-yarn check-types || 
-(
-  echo "Type checking failed. Please fix the errors and try again."
-  false;
-)
+# yarn check-types || 
+# (
+#   echo "Type checking failed. Please fix the errors and try again."
+#   false;
+# )
 
-yarn check-format || 
-(
-  echo "Formatting failed. Please fix the errors and try again."
-  false;
-)
+# yarn check-format || 
+# (
+#   echo "Formatting failed. Please fix the errors and try again."
+#   false;
+# )
 
-yarn check-lint || 
-(
-  echo "Linting failed. Please fix the errors and try again."
-  false;
-)
+# yarn check-lint || 
+# (
+#   echo "Linting failed. Please fix the errors and try again."
+#   false;
+# )
 
-yarn build || 
-(
-  echo "Build failed. Please fix the errors and try again."
-  false;
-)
+# yarn build || 
+# (
+#   echo "Build failed. Please fix the errors and try again."
+#   false;
+# )
 
-echo "All checks passed. Committing..."
+# echo "All checks passed. Committing..."
