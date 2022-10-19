@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import humps from 'humps';
 
 interface RepositoryInfo {
@@ -7,29 +7,20 @@ interface RepositoryInfo {
   stargazersCount: number;
 }
 
-export default function Home(): JSX.Element {
-  const [repositories, setRepositories] = useState<RepositoryInfo[]>([]);
+interface HomeProps {
+  repos: RepositoryInfo[];
+}
 
-  useEffect(() => {
-    fetch('https://api.github.com/users/ericksonsiqueira/repos')
-      .then(async (res) => await res.json())
-      .then((data) => {
-        const repNames = data.map((rep) =>
-          humps.camelizeKeys(rep)
-        ) as RepositoryInfo[];
+interface getServerSidePropsInterface {
+  props: HomeProps;
+}
 
-        setRepositories(repNames);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
-  console.log(repositories);
-
+export default function Home({ repos }: HomeProps): JSX.Element {
   return (
     <div>
       <h1>Hello world!</h1>
       <ul>
-        {repositories.map((rep) => (
+        {repos.map((rep) => (
           <li key={rep.name}>
             <a
               href={rep.svnUrl}
@@ -45,4 +36,18 @@ export default function Home(): JSX.Element {
       </ul>
     </div>
   );
+}
+
+export async function getServerSideProps(): Promise<getServerSidePropsInterface> {
+  const response = await fetch(
+    'https://api.github.com/users/ericksonsiqueira/repos'
+  );
+
+  const data = await response.json();
+  console.log(data);
+  const repos = data.map((rep: RepositoryInfo) =>
+    humps.camelizeKeys(rep)
+  ) as RepositoryInfo[];
+
+  return { props: { repos } };
 }
