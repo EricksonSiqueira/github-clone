@@ -1,6 +1,12 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+git diff HEAD --quiet || 
+(
+  echo "You have uncommitted changes. Please commit them and try again."
+  false;
+)
+
 yarn check-types || 
 (
   echo "Type checking failed. Please fix the errors and try again."
@@ -22,12 +28,6 @@ yarn lint --fix ||
 yarn build || 
 (
   echo "Build failed. Please fix the errors and try again."
-  false;
-)
-
-git diff HEAD --quiet || 
-(
-  echo "You have uncommitted changes. Please commit them and try again."
   false;
 )
 
