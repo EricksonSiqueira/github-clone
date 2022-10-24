@@ -1,13 +1,13 @@
 import React from 'react';
 import humps from 'humps';
 
-interface RepositoryInfo {
+export interface RepositoryInfo {
   svnUrl: string;
   name: string;
   stargazersCount: number;
 }
 
-interface HomeProps {
+export interface HomeProps {
   repos: RepositoryInfo[];
 }
 
